@@ -1,0 +1,6 @@
+dao\UserDAO.class
+servlet\UserFormServlet.class
+util\DBHelper.class
+service\UserService.class
+servlet\UserListServlet.class
+model\User.class
