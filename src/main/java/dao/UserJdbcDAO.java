@@ -9,7 +9,6 @@ import java.util.List;
 
 public class UserJdbcDAO implements UserDAO {
     private static UserJdbcDAO userJdbcDAO;
-    private Connection connection;
 
     private UserJdbcDAO() {
     }
@@ -22,16 +21,7 @@ public class UserJdbcDAO implements UserDAO {
     }
 
     private Connection getConnection() {
-        Connection newConnection = connection;
-        try {
-            if (newConnection == null || newConnection.isClosed()) {
-                newConnection = DBHelper.getInstance().getConnection();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        connection = newConnection;
-        return newConnection;
+        return DBHelper.getInstance().getConnection();
     }
 
     @Override
