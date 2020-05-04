@@ -1,12 +1,20 @@
 package model;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "user_table")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String firstName;
     private String secondName;
     private String email;
+
+    public User() {
+    }
 
     public User(Long id, String firstName, String secondName, String email) {
         this.id = id;
@@ -14,6 +22,7 @@ public class User {
         this.secondName = secondName;
         this.email = email;
     }
+
     public User(String firstName, String secondName, String email) {
         this.firstName = firstName;
         this.secondName = secondName;

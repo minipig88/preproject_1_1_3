@@ -1,6 +1,7 @@
 package service;
 
-import dao.UserDAO;
+import dao.UserHibernateDAO;
+import dao.UserJdbcDAO;
 import model.User;
 
 import java.util.List;
@@ -9,7 +10,6 @@ public class UserService {
     private static UserService userService;
 
     private UserService() {
-
     }
 
     public static UserService getInstance() {
@@ -19,27 +19,29 @@ public class UserService {
         return userService;
     }
 
-    private static UserDAO getUserDAO() {
-        return UserDAO.getInstance();
+    private UserJdbcDAO getUserDAO() {
+        return UserJdbcDAO.getInstance();
     }
 
+    private UserHibernateDAO getUserHibernateDAO() { return UserHibernateDAO.getInstance(); }
+
     public List<User> getAllUser() {
-        return getUserDAO().getAllUser();
+        return getUserHibernateDAO().getAllUser();
     }
 
     public boolean addUser(User user) {
-        return getUserDAO().addUser(user);
+        return getUserHibernateDAO().addUser(user);
     }
 
     public boolean deleteUserByID(long id) {
-        return getUserDAO().deleteUserByID(id);
+        return getUserHibernateDAO().deleteUserByID(id);
     }
 
     public User getUserByID(long id) {
-        return getUserDAO().getUserByID(id);
+        return getUserHibernateDAO().getUserByID(id);
     }
 
     public boolean updateUser(long id, String firstName, String secondName, String email) {
-        return getUserDAO().updateUser(id, firstName, secondName, email);
+        return getUserHibernateDAO().updateUser(id, firstName, secondName, email);
     }
 }

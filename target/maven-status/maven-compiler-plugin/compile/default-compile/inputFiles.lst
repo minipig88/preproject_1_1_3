@@ -1,6 +1,8 @@
-C:\IDEAProject\pre_1_1_3\src\main\java\servlet\UserFormServlet.java
+C:\IDEAProject\pre_1_1_3\src\main\java\servlet\DeleteUserServlet.java
+C:\IDEAProject\pre_1_1_3\src\main\java\servlet\EditServlet.java
 C:\IDEAProject\pre_1_1_3\src\main\java\servlet\UserListServlet.java
 C:\IDEAProject\pre_1_1_3\src\main\java\dao\UserDAO.java
 C:\IDEAProject\pre_1_1_3\src\main\java\model\User.java
 C:\IDEAProject\pre_1_1_3\src\main\java\service\UserService.java
+C:\IDEAProject\pre_1_1_3\src\main\java\servlet\NewUserServlet.java
 C:\IDEAProject\pre_1_1_3\src\main\java\util\DBHelper.java
