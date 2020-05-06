@@ -13,7 +13,7 @@
     <title>User Management Application</title>
 </head>
 <body>
-<center>
+<div style="text-align: center;">
     <h1>User Management</h1>
     <h2>
         <form action="/" method="GET">
@@ -24,7 +24,7 @@
         </form>
 
     </h2>
-</center>
+</div>
 <div align="center">
     <c:if test="${user != null}">
     <form action="/edit" method="post">
@@ -67,6 +67,22 @@
                     <td>
                         <input type="text" name="email" size="15"
                                value="<c:out value='${user.email}' />"
+                        />
+                    </td>
+                </tr>
+                <tr><tr>
+                    <th>Password: </th>
+                    <td>
+                        <input type="text" name="password" size="15"
+                               value="<c:out value='${user.password}' />"
+                        />
+                    </td>
+                </tr>
+                <tr><tr>
+                    <th>Role: </th>
+                    <td>
+                        <input type="text" name="role" size="15"
+                               value="<c:out value='${user.role}' />"
                         />
                     </td>
                 </tr>

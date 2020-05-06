@@ -9,5 +9,5 @@ public interface UserDAO {
     boolean addUser(User user);
     boolean deleteUserByID(long id);
     User getUserByID(long id);
-    boolean updateUser(long id, String firstName, String secondName, String email);
+    boolean updateUser(long id, String firstName, String secondName, String email, String password, String role);
 }

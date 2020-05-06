@@ -79,14 +79,17 @@ public class UserHibernateDAO implements UserDAO {
     }
 
     @Override
-    public boolean updateUser(long id, String firstName, String secondName, String email) {
+    public boolean updateUser(long id, String firstName, String secondName, String email, String password, String role) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         Query query = session.createQuery(
-                "UPDATE User SET firstName=:paramFirstName, secondName=:paramSecondName, email=:paramEmail WHERE id=:paramID");
+                "UPDATE User SET firstName=:paramFirstName, secondName=:paramSecondName, email=:paramEmail," +
+                        " password=:paramPassword, role=:paramRole WHERE id=:paramID");
         query.setParameter("paramFirstName", firstName);
         query.setParameter("paramSecondName", secondName);
         query.setParameter("paramEmail", email);
+        query.setParameter("paramPassword", password);
+        query.setParameter("paramRole", role);
         query.setParameter("paramID", id);
         int count = query.executeUpdate();
         transaction.commit();

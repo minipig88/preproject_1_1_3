@@ -12,21 +12,27 @@ public class User {
     private String firstName;
     private String secondName;
     private String email;
+    private String password;
+    private String role;
 
     public User() {
     }
 
-    public User(Long id, String firstName, String secondName, String email) {
+    public User(Long id, String firstName, String secondName, String email, String password, String role) {
         this.id = id;
         this.firstName = firstName;
         this.secondName = secondName;
         this.email = email;
+        this.password = password;
+        this.role = role;
     }
 
-    public User(String firstName, String secondName, String email) {
+    public User(String firstName, String secondName, String email, String password, String role) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.email = email;
+        this.password = password;
+        this.role = role;
     }
 
     public long getId() {
@@ -35,6 +41,22 @@ public class User {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public String getFirstName() {
@@ -61,19 +83,21 @@ public class User {
         this.email = email;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id &&
-                Objects.equals(firstName, user.firstName) &&
+        return Objects.equals(firstName, user.firstName) &&
                 Objects.equals(secondName, user.secondName) &&
-                Objects.equals(email, user.email);
+                Objects.equals(email, user.email) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(role, user.role);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, secondName, email);
+        return Objects.hash(firstName, secondName, email, password, role);
     }
 }

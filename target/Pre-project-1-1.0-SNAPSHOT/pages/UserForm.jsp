@@ -70,6 +70,22 @@
                         />
                     </td>
                 </tr>
+                <tr><tr>
+                    <th>Password: </th>
+                    <td>
+                        <input type="text" name="password" size="15"
+                               value="<c:out value='${user.password}' />"
+                        />
+                    </td>
+                </tr>
+                <tr><tr>
+                    <th>Role: </th>
+                    <td>
+                        <input type="text" name="role" size="15"
+                               value="<c:out value='${user.role}' />"
+                        />
+                    </td>
+                </tr>
                 <tr>
                     <td colspan="2" align="center">
                         <input type="submit" value="Save" />

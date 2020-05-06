@@ -32,6 +32,8 @@
             <th>FirstName</th>
             <th>SecondName</th>
             <th>Email</th>
+            <th>Password</th>
+            <th>Role</th>
             <th>Actions</th>
         </tr>
         <c:forEach var="user" items="${listUser}">
@@ -40,6 +42,8 @@
                 <td><c:out value="${user.firstName}"/></td>
                 <td><c:out value="${user.secondName}"/></td>
                 <td><c:out value="${user.email}"/></td>
+                <td><c:out value="${user.password}"/></td>
+                <td><c:out value="${user.role}"/></td>
                 <td><a href="edit?id=<c:out value='${user.id}' />">Edit</a>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="delete?id=<c:out value='${user.id}' />">Delete</a>

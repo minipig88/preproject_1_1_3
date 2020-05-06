@@ -36,12 +36,14 @@ public class EditServlet extends HttpServlet {
         String firstName = req.getParameter("firstName");
         String secondName = req.getParameter("secondName");
         String email = req.getParameter("email");
+        String password = req.getParameter("password");
+        String role = req.getParameter("role");
 
         resp.setContentType("text/html;charset=utf-8");
         PrintWriter printWriter = resp.getWriter();
-        if (firstName != null && secondName != null && email != null && id > 0 &&
-                !firstName.isBlank() && !secondName.isBlank() && !email.isBlank()) {
-            if (userService.updateUser(id, firstName, secondName, email)) {
+        if (firstName != null && secondName != null && email != null && id > 0 && password != null && role != null &&
+                !firstName.isBlank() && !secondName.isBlank() && !email.isBlank() && !password.isBlank() && !role.isBlank()) {
+            if (userService.updateUser(id, firstName, secondName, email, password, role)) {
                 resp.setStatus(HttpServletResponse.SC_CREATED);
                 resp.sendRedirect("/");
             } else {

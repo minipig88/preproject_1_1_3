@@ -36,7 +36,9 @@ public class UserJdbcDAO implements UserDAO {
                         resultSet.getLong("id"),
                         resultSet.getString("firstName"),
                         resultSet.getString("secondName"),
-                        resultSet.getString("email")));
+                        resultSet.getString("email"),
+                        resultSet.getString("password"),
+                        resultSet.getString("role")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -49,10 +51,13 @@ public class UserJdbcDAO implements UserDAO {
         boolean result = false;
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement(
-                     "INSERT INTO user_table (firstName, secondName, email) VALUES (?, ?, ?)")) {
+                     "INSERT INTO user_table " +
+                             "(firstName, secondName, email, password, role) VALUES (?, ?, ?, ?, ?)")) {
             statement.setString(1, user.getFirstName());
             statement.setString(2, user.getSecondName());
             statement.setString(3, user.getEmail());
+            statement.setString(4, user.getPassword());
+            statement.setString(3, user.getRole());
             result = statement.executeUpdate() == 1;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -87,7 +92,9 @@ public class UserJdbcDAO implements UserDAO {
                         resultSet.getLong("id"),
                         resultSet.getString("firstName"),
                         resultSet.getString("secondName"),
-                        resultSet.getString("email"));
+                        resultSet.getString("email"),
+                        resultSet.getString("password"),
+                        resultSet.getString("role"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -96,15 +103,18 @@ public class UserJdbcDAO implements UserDAO {
     }
 
     @Override
-    public boolean updateUser(long id, String firstName, String secondName, String email) {
+    public boolean updateUser(long id, String firstName, String secondName, String email, String password, String role) {
         boolean result = false;
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement(
-                     "UPDATE user_table SET firstName = ?, secondName = ?, email = ? WHERE id = ?")) {
+                     "UPDATE user_table SET firstName = ?, secondName = ?, email = ?, password = ?," +
+                             " role = ? WHERE id = ?")) {
             statement.setString(1, firstName);
             statement.setString(2, secondName);
             statement.setString(3, email);
-            statement.setLong(4, id);
+            statement.setString(4, password);
+            statement.setString(5, role);
+            statement.setLong(6, id);
             result = statement.executeUpdate() == 1;
         } catch (SQLException e) {
             e.printStackTrace();

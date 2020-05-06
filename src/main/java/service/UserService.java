@@ -39,7 +39,7 @@ public class UserService {
         return getUserDAO().getUserByID(id);
     }
 
-    public boolean updateUser(long id, String firstName, String secondName, String email) {
-        return getUserDAO().updateUser(id, firstName, secondName, email);
+    public boolean updateUser(long id, String firstName, String secondName, String email, String password, String role) {
+        return getUserDAO().updateUser(id, firstName, secondName, email, password, role);
     }
 }
