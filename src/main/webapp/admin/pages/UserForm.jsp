@@ -13,24 +13,24 @@
     <title>User Management Application</title>
 </head>
 <body>
-<center>
+<div style="text-align: center;">
     <h1>User Management</h1>
     <h2>
-        <form action="/" method="GET">
+        <form action="/admin/list" method="POST">
             <input type="submit" value="List All Users">
         </form> &nbsp;&nbsp;&nbsp;
-        <form action="/new" method="GET">
+        <form action="/admin/new" method="GET">
             <input type="submit" value="Add New User">
         </form>
 
     </h2>
-</center>
+</div>
 <div align="center">
     <c:if test="${user != null}">
-    <form action="/edit" method="post">
+    <form action="/admin/edit" method="POST">
         </c:if>
         <c:if test="${user == null}">
-        <form action="/new" method="post">
+        <form action="/admin/new" method="POST">
             </c:if>
             <table border="1" cellpadding="5">
                 <caption>

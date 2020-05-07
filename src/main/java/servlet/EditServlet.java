@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/edit")
+@WebServlet("/admin/edit")
 public class EditServlet extends HttpServlet {
     private UserService userService = UserService.getInstance();
     private User user;
@@ -40,12 +40,11 @@ public class EditServlet extends HttpServlet {
         String role = req.getParameter("role");
 
         resp.setContentType("text/html;charset=utf-8");
-        PrintWriter printWriter = resp.getWriter();
         if (firstName != null && secondName != null && email != null && id > 0 && password != null && role != null &&
                 !firstName.isBlank() && !secondName.isBlank() && !email.isBlank() && !password.isBlank() && !role.isBlank()) {
             if (userService.updateUser(id, firstName, secondName, email, password, role)) {
                 resp.setStatus(HttpServletResponse.SC_CREATED);
-                resp.sendRedirect("/");
+                resp.sendRedirect("/admin/list");
             } else {
                 resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
                 req.setAttribute("message", "Error update");

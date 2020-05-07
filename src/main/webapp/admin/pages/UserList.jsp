@@ -16,10 +16,10 @@
 <div style="text-align: center;">
     <h1>User Management</h1>
     <h2>
-        <form action="/" method="GET">
+        <form action="/admin/list" method="POST">
             <input type="submit" value="List All Users">
         </form> &nbsp;&nbsp;&nbsp;
-        <form action="/new" method="GET">
+        <form action="/admin/new" method="GET">
             <input type="submit" value="Add New User">
         </form>
     </h2>
@@ -44,9 +44,9 @@
                 <td><c:out value="${user.email}"/></td>
                 <td><c:out value="${user.password}"/></td>
                 <td><c:out value="${user.role}"/></td>
-                <td><a href="edit?id=<c:out value='${user.id}' />">Edit</a>
+                <td><a href="/admin/edit?id=<c:out value='${user.id}' />">Edit</a>
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="delete?id=<c:out value='${user.id}' />">Delete</a>
+                    <a href="/admin/delete?id=<c:out value='${user.id}' />">Delete</a>
                 </td>
             </tr>
         </c:forEach>

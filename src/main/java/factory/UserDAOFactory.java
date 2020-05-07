@@ -24,7 +24,7 @@ public class UserDAOFactory {
         }
         String daotype = properties.getProperty("daotype");
         if (daotype.equals("dao.UserHibernateDAO")) {
-             userDAO = UserHibernateDAO.getInstance();
+            userDAO = UserHibernateDAO.getInstance();
         } else if (daotype.equals("dao.UserJdbcDAO")) {
             userDAO = UserJdbcDAO.getInstance();
         }

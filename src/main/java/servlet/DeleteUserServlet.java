@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/delete")
+@WebServlet("/admin/delete")
 public class DeleteUserServlet extends HttpServlet {
     UserService userService = UserService.getInstance();
 
@@ -21,7 +21,7 @@ public class DeleteUserServlet extends HttpServlet {
             long id = Long.parseLong(req.getParameter("id"));
             if (id > 0 && userService.deleteUserByID(id)) {
                 resp.setStatus(HttpServletResponse.SC_OK);
-                resp.sendRedirect("/");
+                resp.sendRedirect("/admin/list");
             } else {
                 resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
                 req.setAttribute("message", "Error delete");

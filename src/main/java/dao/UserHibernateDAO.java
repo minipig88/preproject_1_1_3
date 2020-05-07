@@ -38,9 +38,7 @@ public class UserHibernateDAO implements UserDAO {
     @Override
     public List<User> getAllUser() {
         Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
         List<User> userList = session.createQuery("FROM User").list();
-        transaction.commit();
         session.close();
         return userList;
     }
@@ -70,11 +68,10 @@ public class UserHibernateDAO implements UserDAO {
     @Override
     public User getUserByID(long id) {
         Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
         Query query = session.createQuery("FROM User WHERE id=:paramID");
         query.setParameter("paramID", id);
         User user = (User) query.uniqueResult();
-        transaction.commit();
+        session.close();
         return user;
     }
 
@@ -95,5 +92,30 @@ public class UserHibernateDAO implements UserDAO {
         transaction.commit();
         session.close();
         return count == 1;
+    }
+
+    @Override
+    public User getUserByEmailAndPassword(String email, String password) {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("FROM User WHERE email=:paramEmail AND password=:paramPassword ");
+        query.setParameter("paramEmail", email);
+        query.setParameter("paramPassword", password);
+        User user = (User) query.uniqueResult();
+        session.close();
+        return user;
+    }
+
+    @Override
+    public boolean validationUser(String email, String password) {
+        boolean result = false;
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("FROM User WHERE email=:paramEmail");
+        query.setParameter("paramEmail", email);
+        User user = (User) query.uniqueResult();
+        if (user != null && user.getPassword().equals(password)) {
+            result = true;
+        }
+        session.close();
+        return result;
     }
 }

@@ -42,4 +42,12 @@ public class UserService {
     public boolean updateUser(long id, String firstName, String secondName, String email, String password, String role) {
         return getUserDAO().updateUser(id, firstName, secondName, email, password, role);
     }
+
+    public boolean validationUser(String email, String password) {
+        return getUserDAO().validationUser(email, password);
+    }
+
+    public User getUserByEmailAndPassword(String email, String password) {
+        return getUserDAO().getUserByEmailAndPassword(email, password);
+    }
 }

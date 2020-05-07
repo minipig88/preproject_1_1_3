@@ -3,7 +3,6 @@ package dao;
 import model.User;
 import util.DBHelper;
 
-import java.io.FileInputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +56,7 @@ public class UserJdbcDAO implements UserDAO {
             statement.setString(2, user.getSecondName());
             statement.setString(3, user.getEmail());
             statement.setString(4, user.getPassword());
-            statement.setString(3, user.getRole());
+            statement.setString(5, user.getRole());
             result = statement.executeUpdate() == 1;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -116,6 +115,45 @@ public class UserJdbcDAO implements UserDAO {
             statement.setString(5, role);
             statement.setLong(6, id);
             result = statement.executeUpdate() == 1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    @Override
+    public User getUserByEmailAndPassword(String email, String password) {
+        User user = null;
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(
+                     "SELECT * FROM user_table WHERE email = ? AND password = ?")) {
+            statement.setString(1, email);
+            statement.setString(2, password);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                user = new User(resultSet.getLong("id"),
+                        resultSet.getString("firstName"),
+                        resultSet.getString("secondName"),
+                        resultSet.getString("email"),
+                        resultSet.getString("password"),
+                        resultSet.getString("role"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+    @Override
+    public boolean validationUser(String email, String password) {
+        boolean result = false;
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(
+                     "SELECT password FROM user_table WHERE email = ?")) {
+            statement.setString(1, email);
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            result = resultSet.getString("password").equals(password);
         } catch (SQLException e) {
             e.printStackTrace();
         }
