@@ -25,14 +25,12 @@ public class DeleteUserServlet extends HttpServlet {
             } else {
                 resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
                 req.setAttribute("message", "Error delete");
-                RequestDispatcher dispatcher = req.getRequestDispatcher("pages/ErrorPage.jsp");
-                dispatcher.forward(req, resp);
+                req.getRequestDispatcher("pages/ErrorPage.jsp").forward(req, resp);
             }
         } catch (NumberFormatException e) {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             req.setAttribute("message", "Bad request");
-            RequestDispatcher dispatcher = req.getRequestDispatcher("pages/ErrorPage.jsp");
-            dispatcher.forward(req, resp);
+            req.getRequestDispatcher("pages/ErrorPage.jsp").forward(req, resp);
             e.printStackTrace();
         }
     }

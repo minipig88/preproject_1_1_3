@@ -48,14 +48,12 @@ public class EditServlet extends HttpServlet {
             } else {
                 resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
                 req.setAttribute("message", "Error update");
-                RequestDispatcher dispatcher = req.getRequestDispatcher("pages/ErrorPage.jsp");
-                dispatcher.forward(req, resp);
+                req.getRequestDispatcher("pages/ErrorPage.jsp").forward(req, resp);
             }
         } else {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             req.setAttribute("message", "Bad request");
-            RequestDispatcher dispatcher = req.getRequestDispatcher("pages/ErrorPage.jsp");
-            dispatcher.forward(req, resp);
+            req.getRequestDispatcher("pages/ErrorPage.jsp").forward(req, resp);
         }
     }
 }

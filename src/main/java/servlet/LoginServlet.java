@@ -3,7 +3,6 @@ package servlet;
 import model.User;
 import service.UserService;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,14 +35,12 @@ public class LoginServlet extends HttpServlet {
             } else {
                 resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
                 req.setAttribute("message", "invalid email or password");
-                RequestDispatcher dispatcher = req.getRequestDispatcher("pages/ErrorPage.jsp");
-                dispatcher.forward(req, resp);
+                req.getRequestDispatcher("pages/ErrorPage.jsp").forward(req, resp);
             }
         } else {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             req.setAttribute("message", "Bad request");
-            RequestDispatcher dispatcher = req.getRequestDispatcher("pages/ErrorPage.jsp");
-            dispatcher.forward(req, resp);
+            req.getRequestDispatcher("pages/ErrorPage.jsp").forward(req, resp);
         }
     }
 }
